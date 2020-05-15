@@ -1,0 +1,40 @@
+<div class="stats-container">
+    <div *ngIf="(uniques | json) != '{}'">
+        <h3 class="section-header">
+            Recent Uniques
+        </h3>
+        <div class="recent-tray">
+            <div *ngFor="let unique of uniques | keyvalue: defaultSort" class="unique-item">
+                <img id="{{unique.value.item.name}}" src="{{unique.value.image.src}}" alt=""/>
+                <div class="item-tooltip">{{unique.value.item.name | replaceUnderscore }}</div>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="section-header">
+        Progress Overview
+    </h3>
+    <div class="cards-container">
+        <div *ngFor="let stat of stats | keyvalue: defaultSort"
+            [ngClass]="stat.key == 'all' ? 'card-large' : 'card-small'"
+            [ngStyle]="{'order': stat.key == 'all' ? 0 : 1}">
+            <div class="card-header">
+                <span>{{stat.key | titlecase}}</span>
+                <div id="card-data">
+                    <span>{{stat.value.completed | number:'0.2-2'}}%</span>
+                    <span [ngClass]="stat.value.completed == 100 ? 'complete' : 'incomplete'">
+                        {{stat.value.obtained}}/{{stat.value.total}}
+                    </span>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="dividers">
+                    <div class="divider"></div>
+                    <div class="divider"></div>
+                    <div class="divider"></div>
+                </div>
+                <div class="progress-bar" [ngStyle]="{'width': stat.value.completed+'%'}"></div>
+            </div>
+        </div>
+    </div>
+</div>

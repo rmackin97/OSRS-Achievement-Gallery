@@ -1,0 +1,12 @@
+<div class="profile-container">
+    <div class="profile-info" (click)="toggleDropdown()">
+        {{selectedProfile}}
+
+        <div id="profile-dropdown" class="hidden">
+            <a *ngFor="let profile of profiles">{{profile}}</a>
+        </div>
+    </div>
+    <a class="profile-settings" routerLink="/settings">
+        Settings
+    </a>
+</div>

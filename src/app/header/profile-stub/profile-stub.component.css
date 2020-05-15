@@ -1,0 +1,57 @@
+.profile-container {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+}
+
+.profile-info {
+    padding: 5px 20px;
+}
+
+.profile-info:hover {
+    cursor: pointer;
+}
+
+#profile-dropdown.visible {
+    display: flex;
+    flex-direction: column;
+}
+
+#profile-dropdown {
+    display: none;
+
+    margin-top: 19px;
+
+    position: absolute;
+    z-index: 1;
+
+    min-width: 120px;
+
+    background-color: rgb(16,18,20);
+    border: 1px solid rgba(100,100,100,0.3);
+    border-top: none;
+}
+
+#profile-dropdown a {
+    padding: 10px 20px;
+}
+
+#profile-dropdown a:hover {
+    background-color: rgb(81,83,85);
+}
+
+.profile-settings {
+    text-decoration: none;
+
+    padding: 5px 20px;
+    border-left: 1px solid rgba(100,100,100,0.3);
+}
+
+.profile-settings:hover {
+    cursor: pointer;
+}
+

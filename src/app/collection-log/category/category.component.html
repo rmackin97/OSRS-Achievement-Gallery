@@ -1,0 +1,25 @@
+<div class="cards-container">
+    <div *ngFor="let log of logs | keyvalue: defaultSort" 
+        [ngClass]="category == 'clues' ? 'card-large' : 'card-small'">
+        <div class="card-header">
+            <span>{{log.key}}</span>
+            <div id="card-data">
+                <span>- -</span>
+                <span [ngClass]="log.value.stats.completed ? 'complete' : 'incomplete'">
+                    {{log.value.stats.obtained}}/{{log.value.stats.total}}
+                </span>
+            </div>
+        </div>
+        <div class="card-body">
+            <ul>
+                <li *ngFor="let entry of log.value.entry" [ngStyle]="{'order': entry.image.order}">
+                    <img (dblclick)="updateLog($event)" 
+                        id="{{entry.item.name}}" 
+                        [ngClass]="entry.item.obtained ? 'obtained' : 'unobtained'"
+                        src="{{entry.image.src}}" alt=""/>
+                    <div class="item-tooltip">{{entry.item.name | replaceUnderscore }}</div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

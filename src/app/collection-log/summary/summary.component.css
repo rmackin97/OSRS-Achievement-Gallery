@@ -1,0 +1,134 @@
+.section-header {
+    text-align: center;
+}
+
+/* Recent uniques */
+.recent-tray {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    text-align: center;
+
+    margin: 10px 10px;
+    padding: 5px 10px;
+
+    background-color: rgb(50,52,59);
+    border: 1px solid rgba(100,100,100,0.3);
+}
+
+.unique-item {
+    flex: 0 1 50px;
+    position: relative;
+}
+
+img {
+    padding: 5px 10px;
+    object-fit: scale-down;
+}
+
+.unique-item .item-tooltip {
+    visibility: hidden;
+    background-color: black;
+    text-align: center;
+    padding: 5px;
+
+    white-space: nowrap; /* TODO cuts content when hanging off screen */
+    
+    /* Position the tooltip text */
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    left: 50%;
+}
+
+.unique-item:hover .item-tooltip {
+    visibility: visible;
+}
+
+/* Cards */
+.cards-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.card-large {
+    min-width: 300px;
+    flex: 1 1 100%;
+
+    margin: 10px 10px;
+    padding: 5px 10px;
+
+    background-color: rgb(50,52,59);
+    border: 1px solid rgba(100,100,100,0.3);
+}
+
+.card-small {
+    min-width: 300px; /* TODO adjust later when ive decided elctron min/max width*/
+    /* need to make it so the theres never a time when only one card is per row  about 750px width*/
+    flex: 1 1 calc(50% - 42px);
+
+    margin: 10px 10px;
+    padding: 5px 10px;
+
+    background-color: rgb(50,52,59);
+    border: 1px solid rgba(100,100,100,0.3);
+}
+
+.card-small:nth-last-child(2) {
+    max-width: calc(50% - 42px);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+
+    padding-bottom: 5px;
+}
+
+#card-data span:first-child {
+    padding-right: 10px;
+}
+
+#card-data span:last-child {
+    color: rgb(255, 255, 0);
+
+    padding-left: 10px;
+    border-left: 1px solid rgba(25,27,29,0.6);
+}
+
+#card-data span:last-child.complete {
+    color: rgb(0, 255, 0);
+}
+
+.card-body {
+    position: relative;
+    height: 20px;
+    width: 100%;
+
+    background-color: rgb(25,27,29);
+    border: 1px solid rgba(100,100,100,0.3);
+}
+
+.progress-bar {
+    background-color: rgba(0, 150, 0, 0.9);
+    height: 20px;
+}
+
+.card-body .dividers {
+    display: flex;
+
+    height: 100%;
+    width: 100%;
+
+    position: absolute;
+    z-index: 1;
+    top: 0px;
+    left: 0px;
+}
+
+.card-body .divider {
+    width: 25%;
+    border-right: 1px solid black;
+}

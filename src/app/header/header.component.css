@@ -1,0 +1,56 @@
+.header-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background-color: rgb(15,17,19);
+
+    height: 55px;
+
+    border-bottom: 1px solid yellow;
+}
+
+/* Header left */
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.toggle-btn span {
+    display: block;
+    width: 30px;
+    height: 3px;
+    background-color: white;
+    margin: 5px 0;
+}
+
+.toggle-btn:hover {
+    cursor: pointer;
+}
+
+.header-left a, div {
+    padding: 0 5px;
+}
+
+/* Header right */
+/* .header-right {
+    
+} */
+
+/* .header-right a {
+    padding: 0px 5px;
+}
+
+a:link, a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    color: red;
+} */

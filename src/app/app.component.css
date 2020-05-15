@@ -1,0 +1,14 @@
+.site-container {
+    overflow: auto;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    background-color: rgb(15,17,19);
+}
+
+
+.content-wrapper {
+    flex: 1 0 auto;
+}

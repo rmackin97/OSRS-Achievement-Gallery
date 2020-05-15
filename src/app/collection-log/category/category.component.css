@@ -1,0 +1,112 @@
+.cards-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+/* Cards displayed full length (clue category only) */
+.card-large {
+    min-width: 300px;
+    flex: 1 1 100%;
+
+    margin: 10px 10px;
+
+    background-color: rgb(50,52,59);
+    border: 1px solid rgba(100,100,100,0.3);
+}
+
+/* Cards displayed side by side */
+.card-small {
+    min-width: 300px; /* TODO adjust later when ive decided elctron min/max width*/
+    /* need to make it so the theres never a time when only one card is per row  about 750px width*/
+    flex: 1 1 calc(50% - 22px);
+
+    margin: 10px 10px;
+
+    background-color: rgb(50,52,59);
+    border: 1px solid rgba(100,100,100,0.3);
+}
+
+.card-small:last-child {
+    max-width: calc(50% - 20px);
+}
+
+/* ----- Card Header ----- */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+
+    padding: 10px 10px;
+
+    background-color: rgb(15,17,19);
+    border-bottom: 1px solid rgba(100,100,100,0.3);
+}
+
+#card-data span:first-child {
+    padding-right: 10px;
+}
+
+#card-data span:last-child {
+    padding-left: 10px;
+    border-left: 1px solid rgba(100,100,100,0.3);
+
+    color: rgb(255, 255, 0);
+}
+
+#card-data span:last-child.complete {
+    color: rgb(0, 255, 0);
+}
+
+/* ----- Card Body ----- */
+.card-body ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+
+    text-align: center;
+
+    padding: 20px 10px;
+    list-style-type: none;
+}
+
+.card-body li {
+    flex: 0 1 50px;
+    position: relative;
+}
+
+img {
+    padding: 5px 10px;
+    object-fit: scale-down;
+}
+
+img.unobtained {
+    opacity: 0.3;
+}
+
+img.obtained {
+    opacity: 1;
+}
+
+img:hover {
+    cursor: pointer;
+}
+
+li .item-tooltip {
+    visibility: hidden;
+    background-color: black;
+    text-align: center;
+    padding: 5px;
+    
+    white-space: nowrap; /* TODO cuts content when hanging off screen */
+
+    /* Position the tooltip text */
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    left: 50%;
+}
+
+li:hover .item-tooltip {
+    visibility: visible;
+}
