@@ -1,0 +1,94 @@
+<div class="content-container" *ngIf="!isLoading">
+    
+    <div class="header">
+        <h1>{{currProfile.username}}</h1>
+        <div>{{currProfile.gamemode}}</div>
+    </div>
+
+    <div class="grid-container profile-options">
+
+        <div class="grid-item edit">
+            <mat-card class="edit-card">
+                <h3 class="card-text">Edit Profile</h3>
+                <div class="card-text">
+                    In-game name change? Update your profile's username 
+                    here to accurately keep track of your account!
+                </div>
+
+                <form [formGroup]="editProfileForm" 
+                    (ngSubmit)="editProfile(editProfileForm.value)">
+                    <mat-form-field>
+                        <input matInput placeholder="Name Change" formControlName="username" required>
+                        <mat-error *ngIf="editProfileForm.get('username').invalid">
+                            {{getErrorMessage(editProfileForm.get('username'))}}
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-checkbox #checkbox color='primary'>Change Gamemode</mat-checkbox>
+                    <div class="card-text" *ngIf="checkbox.checked">
+                        In-game gamemode change? 
+                    </div>
+                    <mat-form-field *ngIf="checkbox.checked">
+                        <mat-label>Gamemode</mat-label>
+                        <mat-select formControlName="gamemode" panelClass="dropdown"
+                            [disableRipple]="true" [disableOptionCentering]="true">
+                            <mat-option *ngFor="let gamemode of gamemodes" [value]="gamemode">{{gamemode}}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="editProfileForm.get('gamemode').invalid">
+                            {{getErrorMessage(editProfileForm.get('gamemode'))}}
+                        </mat-error>
+                    </mat-form-field>
+
+                    <button mat-raised-button type="submit" [disabled]="!editProfileForm.valid">
+                        Submit
+                    </button>
+                 </form>
+            </mat-card>
+        </div> 
+    
+        <div class="grid-item update">
+            <mat-card class="update-card">
+                <div class="card-text">
+                    <div>Last updated on {{currProfile.checkedAt}}</div>
+                    <div>{{currProfile.lastChecked}}</div>
+                    <div *ngIf="updating" class="warning-message">
+                        Updating...
+                    </div>
+                </div>
+                <div class="actions">
+                    <button *ngIf="!updating" mat-raised-button (click)="updateProfile()">
+                        Update Profile
+                    </button>
+                    <mat-spinner *ngIf="updating" [diameter]="40"></mat-spinner>
+                </div>
+            </mat-card>
+        </div>
+
+        <div class="grid-item delete">
+            <mat-card class="delete-card">
+                <div class="card-text">
+                    Permanently delete profile?
+                </div>
+                <div class="actions">
+                    <button mat-raised-button (click)="deleteProfile()">
+                        Delete Profile
+                    </button>
+                </div>
+            </mat-card>
+        </div>
+
+        <div class="grid-item filters" *ngFor="let filters of profileFilters">
+            <mat-card>
+                <h3 class="card-text">{{filters.key}} Filters</h3>
+                <div class="filters">
+                    <mat-checkbox *ngFor="let filter of filters.value" color='primary'
+                        [checked]="filter.ProfileFilters.enabled" (click)="setProfileFilter(filter.ProfileFilters.id)">
+                        Include {{filter.name}}
+                    </mat-checkbox>
+                </div>
+            </mat-card>
+        </div>
+    
+    </div>
+
+</div>

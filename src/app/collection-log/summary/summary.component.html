@@ -1,7 +1,61 @@
-<div class="stats-container">
+<!-- <app-loader *ngIf="!loaded"></app-loader> -->
+
+<div *ngIf="!isLoading" class="summary-container">
+
+    
+    <div class="progress-bar container">
+        <!-- 'All' Progress Bar -->
+        <div class="progress-bar large">
+            <div class="progress-bar header">
+                <div>
+                    All
+                </div>
+                <div class="progress-bar data">
+                    {{summary['All'].obtained}}/{{summary['All'].total}}
+                </div>
+            </div>
+            <div class="progress-bar body">
+                <div class="dividers">
+                    <div class="divider"></div>
+                    <div class="divider"></div>
+                    <div class="divider"></div>
+                </div>
+                <div class="progress" [ngStyle]="{'width': summary['All'].percent+'%'}"></div>
+            </div>
+        </div> 
+        
+        <!-- Category Progress Bar -->
+        <div *ngFor="let categoryLogs of collectionLog" class="progress-bar small">
+            <div class="progress-bar header">
+                <div>
+                    {{categoryLogs.category}}
+                </div>
+                <div class="progress-bar data">
+                    {{summary[categoryLogs.category].obtained}}/{{summary[categoryLogs.category].total}}
+                </div>
+            </div>
+            <div class="progress-bar body">
+                <div class="dividers">
+                    <div class="divider"></div>
+                    <div class="divider"></div>
+                    <div class="divider"></div>
+                </div>
+                <div class="progress" [ngStyle]="{'width': summary[categoryLogs.category].percent+'%'}"></div>
+            </div>
+        </div>  
+    </div>
+</div>
+
+
+
+
+
+
+
+<!-- <div *ngIf="loaded" class="stats-container">
     <div *ngIf="(uniques | json) != '{}'">
         <h3 class="section-header">
-            Recent Uniques
+            Recently Obtained Uniques
         </h3>
         <div class="recent-tray">
             <div *ngFor="let unique of uniques | keyvalue: defaultSort" class="unique-item">
@@ -10,31 +64,4 @@
             </div>
         </div>
     </div>
-
-    <h3 class="section-header">
-        Progress Overview
-    </h3>
-    <div class="cards-container">
-        <div *ngFor="let stat of stats | keyvalue: defaultSort"
-            [ngClass]="stat.key == 'all' ? 'card-large' : 'card-small'"
-            [ngStyle]="{'order': stat.key == 'all' ? 0 : 1}">
-            <div class="card-header">
-                <span>{{stat.key | titlecase}}</span>
-                <div id="card-data">
-                    <span>{{stat.value.completed | number:'0.2-2'}}%</span>
-                    <span [ngClass]="stat.value.completed == 100 ? 'complete' : 'incomplete'">
-                        {{stat.value.obtained}}/{{stat.value.total}}
-                    </span>
-                </div>
-            </div>
-            <div class="card-body">
-                <div class="dividers">
-                    <div class="divider"></div>
-                    <div class="divider"></div>
-                    <div class="divider"></div>
-                </div>
-                <div class="progress-bar" [ngStyle]="{'width': stat.value.completed+'%'}"></div>
-            </div>
-        </div>
-    </div>
-</div>
+</div> -->

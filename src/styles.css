@@ -12,7 +12,19 @@
 html, body {
     height: 100%;
     overscroll-behavior: none;
+    font-family: 'Roboto' !important;
+    /* font-style: normal; */
+    /* font-weight: 100; */
 }
+
+/* @font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: local('Roboto Light'), local('Roboto-Light'), url(https://fonts.gstatic.com/s/roboto/v20/KFOlCnqEu92Fr1MmSU5fCRc4AMP6lbBP.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+} */
 
 
 
@@ -581,7 +593,7 @@ body {
   .mat-option:hover:not(.mat-option-disabled), .mat-option:focus:not(.mat-option-disabled) {
     background: rgba(250, 250, 250, 0.04); }
   .mat-option.mat-selected:not(.mat-option-multiple):not(.mat-option-disabled) {
-    background: rgba(250, 250, 250, 0.04); }
+    background: #fafafa0a; }
   .mat-option.mat-active {
     background: rgba(250, 250, 250, 0.04);
     color: white; }
@@ -1923,7 +1935,7 @@ th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
 
 .mat-snack-bar-container {
   color: rgba(0, 0, 0, 0.87);
-  background: #fafafa;
+  background: rgb(40,43,48);
   box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12); }
 
 .mat-simple-snackbar-action {
@@ -1944,3 +1956,6 @@ th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
   font-family: 'Material Icons', 'Material Icons'; }
   .material-icons .mat-badge-content {
     font-family: 'Roboto'; }
+
+html, body { height: 100%; }
+/* body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */

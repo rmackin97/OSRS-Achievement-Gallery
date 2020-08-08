@@ -1,0 +1,24 @@
+<div class="content-body">
+    <div *ngIf="!isLoading" class="content-container">
+        <!-- Profile List -->
+        <div class="profile-list">
+            <a *ngFor="let profile of profileList"
+                (click)="selectProfile(profile.id, profile.username)" 
+                [ngClass]="{'selected-view': currProfile.id === profile.id && !addProfile}">
+                {{profile.username}}
+            </a>
+            <a (click)="selectProfile(-1)" [ngClass]="{'selected-view': addProfile}">
+                Add Profile
+            </a>
+        </div>
+        <!-- Profile View -->
+        <div class="profile-view">
+            <div *ngIf="!addProfile">
+                <app-profiles-info [currProfile]="currProfile"></app-profiles-info>  
+            </div>
+            <div *ngIf="addProfile">
+                <app-profiles-create></app-profiles-create>
+            </div>
+        </div>
+    </div>
+</div>

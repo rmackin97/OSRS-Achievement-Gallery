@@ -1,0 +1,83 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+
+    display: flex;
+    white-space: nowrap;
+    height: 55px;
+    background-color: rgb(30,33,36);
+    border-bottom: 1px solid rgb(255,255,0);
+}
+
+.spacer {
+    flex: 1 1 auto;
+    /* background-color: red; */
+}
+
+/* Header left */
+.header-left {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    margin-left: 0.5em;
+    /* background-color: purple; */
+}
+
+.material-icons { font-size: 48px; }
+.material-icons:hover { cursor: pointer; }
+
+.title {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* Header right */
+.header-right {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    margin-right: 0.5em;
+    /* background-color: blue; */
+}
+
+.header-right .current-profile {
+    color: rgb(255,255,0);
+    font-size: 16px;
+    font-weight: 500;
+    
+    padding: 0 1em;
+}
+
+.header-right *:not(:first-child):not(.material-icons) {
+    margin-left: 0.5em;
+}
+
+.header-right .material-icons {
+    margin-left: 8px;
+}
+
+.header-right button {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.header-right button:hover {
+    background-color: rgb(40,43,46);
+}
+
+/* Menu Style */
+::ng-deep .header-menu {
+    background-color: rgb(33,36,39);
+}
+
+.mat-menu-item {
+    font-size: 16px;
+    font-weight: 500;
+  }
+  
+  button.mat-menu-item:hover {
+    background-color: rgb(146,149,160, 0.5);
+  }

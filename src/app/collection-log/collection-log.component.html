@@ -1,43 +1,17 @@
 <div class="content-body">
-    <div class="content-options">
-        <ul>
-            <a id="summary-btn" (click)="renderCategory('summary')"> 
-                <li>
-                    <p>Summary</p>
-                </li>
-            </a>
-            <a id="bosses-btn" (click)="renderCategory('bosses')"> 
-                <li>
-                    <p>Bosses</p>
-                </li>
-            </a>
-            <a id="raids-btn" (click)="renderCategory('raids')">
-                <li>
-                    <p>Raids</p>
-                </li>
-            </a>
-            <a id="clues-btn" (click)="renderCategory('clues')">
-                <li>
-                    <p>Clues</p>
-                </li>
-            </a>
-            <a id="minigames-btn" (click)="renderCategory('minigames')">
-                <li>
-                    <p>Minigames</p>
-                </li>
-            </a>
-            <a id="other-btn" (click)="renderCategory('other')">
-                <li>
-                    <p>Other</p>
-                </li>
-            </a>
-        </ul>
+    <div *ngIf="!isLoading" class="content-container">
+        <!-- Tab Bar -->
+        <div class="tab-bar">
+            <div class="tabs">
+                <a *ngFor="let categoryTab of categories" (click)="selectCategory(categoryTab)"
+                [ngClass]="{'selected': categoryTab === category}">
+                    {{categoryTab}}
+                </a>
+            </div>
+        </div>
+        <!-- Content -->
+        <div class="content-wrapper">
+            <app-category [category]="category" [profileId]="profileId"></app-category>
+        </div>
     </div>
-
-    <app-summary *ngIf="summaryCategory"></app-summary>
-    <app-category *ngIf="bossesCategory" [category]="type"></app-category>
-    <app-category *ngIf="raidsCategory" [category]="type"></app-category>
-    <app-category *ngIf="cluesCategory" [category]="type"></app-category>
-    <app-category *ngIf="minigamesCategory" [category]="type"></app-category>
-    <app-category *ngIf="otherCategory" [category]="type"></app-category>
 </div>

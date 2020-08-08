@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 // services
 import { CollectionLogService } from "../../services/collection-log.service";
@@ -10,39 +10,93 @@ import { ProfileService } from "../../services/profile.service";
   styleUrls: ['./summary.component.css']
 })
 export class SummaryComponent implements OnInit {
-  selectedProfile: string;
-  stats: {};
-  uniques: {};
+  @Input() profileId: number;
+
+  collectionLog: Object[];
+  summary: Object = {};
+
+  isLoading: boolean;
 
   constructor(private collectionLogService: CollectionLogService, private profileService: ProfileService) { }
 
   ngOnInit(): void {
-    this.profileService.getCurrentProfile((data) => {
-      this.selectedProfile = data;
+    this.isLoading = true;
+    // gets all collection log entries for this user profile
+    // this.collectionLogService.getCollectionLog(this.profileId, (err, logs) => {
+    //   if(err) return console.log(err); // todo handle err
+    //   this.collectionLog = logs;
 
-      this.getRecentUniques(this.selectedProfile);
-      this.getStats(this.selectedProfile);
+    //   // calculates collection log summary
+    //   this.getSummary((summary) => {
+    //     this.summary = summary;
 
-    }, (err) => console.log(err)); // error, there is no current profile (maybe route to profile creation)
+    //     this.isLoading = false;
+    //   })
+    // });
+
+
+
+
+    // // retrieves the currently selected profile
+    // this.profileService.getSelectedProfile((data) => {
+    //   this.selectedProfile = data;
+
+    //   // retrieves collection log stats for the currently selected profile
+    //   this.collectionLogService.getStats(this.selectedProfile.toLowerCase(), (data) => {
+    //     this.stats = data;
+
+    //     // retrives recently obtained uniques for the currently selected profile
+    //     this.collectionLogService.getRecentUniques(this.selectedProfile.toLowerCase(), (data) => {
+    //       this.uniques = data;
+
+    //       this.loaded = true;
+    //     }, (err) => {
+    //       console.log(err); //todo handle error somehow or ensure it never occurs
+    //     });
+    //   }, (err) => {
+    //     console.log(err); //todo handle error somehow or ensure it never occurs
+    //   });
+    // }, (err) => console.log(err)); // todo handle error, there is no current profile (maybe route to profile creation)
   }
 
-  getStats(selectedProfile): void {
-    this.collectionLogService.getStats(selectedProfile.toLowerCase())
-    .subscribe(stats => {
-      this.stats = stats;
-      // console.log(stats);
-    });
+  getSummary(callback) {
+    let obtained = 0, total = 0;
+    let summary = {};
+
+    for(const categoryLogs of Object.values(this.collectionLog)) {
+      const category = categoryLogs['category'];
+      const categorySummary = this.categorySummary(categoryLogs['logs']);
+
+      obtained += categorySummary[0];
+      total += categorySummary[1];
+
+      summary[category] = {};
+      summary[category].obtained = categorySummary[0];
+      summary[category].total = categorySummary[1];
+      summary[category].percent = categorySummary[0] / categorySummary[1] * 100;
+    }
+
+    summary['All'] = {};
+    summary['All'].obtained = obtained;
+    summary['All'].total = total;
+    summary['All'].percent = obtained / total * 100;
+
+    callback(summary);
   }
 
-  getRecentUniques(selectedProfile): void {
-    this.collectionLogService.getRecentUniques(selectedProfile.toLowerCase())
-      .subscribe(uniques => {
-        this.uniques = uniques;
-        // console.log(uniques);
-      })
+  categorySummary(categoryLogs) {
+    let obtained = 0, total = 0;
+
+    for(const activityLogs of Object.values(categoryLogs)) {
+      for(const entry of activityLogs['logs']) {
+        total++;
+        if(entry.ProfileCollectionLogs.obtained) {
+          obtained++;
+        }
+      }
+    }
+
+    return [obtained, total];
   }
 
-  defaultSort(){
-    return 0;
-  }
 }

@@ -1,0 +1,25 @@
+<div class="content-body">
+    <mat-card *ngIf="!isLoading">
+        <mat-card-header>
+            <mat-card-title>
+                <h3>Please Verify Your Email!</h3>
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content> 
+            To finish activating your account follow the link we sent to {{email}}.
+        </mat-card-content>
+        <mat-card-actions>
+            <div *ngIf="canResend">
+                <div>
+                    Didn't receive an email?
+                </div>
+                <button mat-raised-button (click)="resendEmail()">Resend Email</button>
+            </div>
+            <div *ngIf="!canResend">
+                <div>
+                    Email verification has been re-sent!
+                </div>
+            </div>
+        </mat-card-actions>
+    </mat-card>
+</div>

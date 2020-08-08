@@ -1,0 +1,54 @@
+#sidebar {
+    position: fixed;
+    top: 56px;
+    z-index: 1;
+
+    background-color: rgb(33,36,39);
+    border: 1px solid rgba(140,140,140,0.3);
+
+    height: 100%;
+    width: 150px;
+}
+
+#sidebar.active {
+    left: 0;
+    transition: all 250ms linear;
+}
+
+#sidebar.inactive {
+    left: -150px;
+    transition: all 250ms linear;
+}
+
+#sidebar ul {
+    display: flex;
+    flex-direction: column;
+
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+#sidebar a {
+    text-decoration: none;
+
+    padding: 15px 5px;
+
+    margin-bottom: -1px;
+    border-bottom: 1px solid rgba(140,140,140,0.3);
+}
+
+#sidebar a:hover {
+    background-color: rgb(146,149,160, 0.5);
+}
+
+#sidebar li {
+    display: flex;
+    justify-content: space-between;
+}
+
+.sidebar-text {
+    font-size: 16px;
+    font-weight: 500;
+    white-space: nowrap;
+}

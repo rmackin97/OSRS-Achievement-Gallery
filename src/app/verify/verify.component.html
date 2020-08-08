@@ -1,0 +1,15 @@
+<div class="content-body">
+    <mat-card *ngIf="!isLoading">
+        <mat-card-header>
+            <mat-card-title>
+                <h3>Thank You For Verifying Your Account!</h3>
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content> 
+            {{email}} has been verified
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button routerLink="/login">Continue to Login</button>
+        </mat-card-actions>
+    </mat-card>
+</div>

@@ -1,0 +1,95 @@
+<app-sidebar
+    [toggle]="toggle"
+    (close)="closeSidebar()">
+</app-sidebar>
+
+<!-- Small Header -->
+<div class="header small" *ngIf="layout === 'small'">
+    <!-- Header Left -->
+    <div class="header-left">
+        <span class="material-icons menu-button" (click)="toggleSidebar()">menu</span>
+        <a routerLink="/home">
+            <img src="" alt="Logo">
+        </a>
+        <span class="title">OSRS Achievements</span>
+    </div>
+
+    <div class="spacer"></div>
+
+    <!-- Header Right -->
+    <div class="header-right-wrapper" *ngIf="!isLoading">
+        <!-- Verified User -->
+        <div *ngIf="verified" class="header-right">
+            <span *ngIf="currProfile" class="current-profile">
+                {{currProfile.username}}
+            </span>
+
+            <span class="material-icons" [matMenuTriggerFor]="menu">expand_more</span>
+            <mat-menu #menu="matMenu" class="header-menu">
+                <button mat-menu-item (click)="profileNav()">
+                    Profiles
+                </button>
+                <button mat-menu-item (click)="accountNav()">
+                    Account
+                </button>
+                <button mat-menu-item (click)="userLogout()">
+                    Logout
+                </button>
+            </mat-menu>
+        </div>
+
+        <!-- Unverified User -->
+        <div *ngIf="!verified" class="header-right">
+            <button mat-button routerLink="/login">
+                Login
+            </button>
+            <button mat-button routerLink="/register">
+                Register
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Large Header -->
+<div class="header large" *ngIf="layout === 'large'">
+    <!-- Header Left -->
+    <div class="header-left">
+        <span class="material-icons menu-button" (click)="toggleSidebar()">menu</span>
+        <a routerLink="/home">
+            <img src="" alt="Logo">
+        </a>
+        <span class="title">OSRS Achievements</span>
+    </div>
+
+    <div class="spacer"></div>
+
+    <!-- Header Right -->
+    <div class="header-right" *ngIf="!isLoading">
+        <!-- Verified User -->
+        <div *ngIf="verified">
+            <span *ngIf="currProfile" class="current-profile">
+                {{currProfile.username}}
+            </span>
+
+            <button mat-button (click)="profileNav()">
+                Profiles
+            </button>
+            <button mat-button (click)="accountNav()">
+                Account
+            </button>
+            <button mat-button (click)="userLogout()">
+                Logout
+            </button>
+        </div>
+
+        <!-- Unverified User -->
+        <div *ngIf="!verified">
+            <button mat-button routerLink="/login">
+                Login
+            </button>
+            <button mat-button routerLink="/register">
+                Register
+            </button>
+        </div>
+    </div>
+</div>

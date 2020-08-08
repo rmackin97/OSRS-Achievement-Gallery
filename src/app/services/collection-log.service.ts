@@ -3,63 +3,68 @@ import { Observable, throwError } from 'rxjs';
 import { map, catchError } from "rxjs/operators";
 import { HttpClient } from "@angular/common/http";
 
+
 /**
  * This class gets collection log data for the current profile (TODO)
  */
-
- import { ProfileService } from "../services/profile.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CollectionLogService {
 
-  constructor(private http: HttpClient, private profileService: ProfileService) { }
+  constructor(private http: HttpClient) { }
 
-  getLogs(category: string, selectedProfile: string): Observable<any> {
-    return this.http.get("http://localhost:8000/"+selectedProfile+"/collection-log/getLogs/"+category)
-      .pipe(
-        map(data => {
-          return data;
-        }), catchError(error => {
-          return throwError("at CollectionLogService: getLogs("+category+")");
-        })
-      );
+  /**
+   * Gets the full collection log for this user profile.
+   * Errors 401 and 500 possible.
+   * @param profileId the specifed profile's id
+   */
+  getCollectionLog(profileId, done, callback) {
+    this.http.get("/profile/"+ profileId +"/collection-log").subscribe(collectionLog => {
+      done(collectionLog);
+    }, err => {
+      callback(err);
+    });
   }
 
-  updateLogs(item: string, selectedProfile: string): Observable<any> {
-    return this.http.post("http://localhost:8000/"+selectedProfile+"/collection-log/updateLogs", { 
-      "item": item 
-    })
-      .pipe(
-        map(res => { 
-          return res["result"];
-        }), catchError(error => {
-          return throwError("at CollectionLogService: updateLogs("+item+")");
-        })
-      );
+   /**
+   * Gets all collection log entries for this user profile and specified category.
+   * Errors 401 and 500 possible.
+   * @param profileId the specified profile's id
+   * @param category the specified collection log category
+   */
+  getCategoryLogs(profileId, category, done, callback) {
+    this.http.get("/profile/"+ profileId +"/collection-log/"+ category).subscribe(categoryLogs => {
+      done(categoryLogs);
+    }, err => {
+      callback(err);
+    });
   }
 
-  getStats(selectedProfile: string): Observable<any> {
-    return this.http.get("http://localhost:8000/"+selectedProfile+"/collection-log/getStats")
-      .pipe(
-        map(data => {
-          return data;
-        }), catchError(error => {
-          return throwError("at CollectionLogService: getStats()");
-        })
-      );
+  /**
+   * Updates this user profile's collection log 'obtained' status for all items of the specified type.
+   * Errors 401 and 500 possible.
+   * @param profileId the specified profile's id
+   * @param item the specified item to update
+   */
+  updateLog(profileId, item, done, callback) {
+    this.http.post("/profile/"+ profileId +"/collection-log/"+ item, null).subscribe(result => {
+      done(result);
+    }, err => {
+      callback(err);
+    });
   }
 
-  getRecentUniques(selectedProfile: string): Observable<any> {
-    return this.http.get("http://localhost:8000/"+selectedProfile+"/collection-log/getRecentUniques")
-      .pipe(
-        map(data => {
-          return data;
-        }), catchError(error => {
-          return throwError("at CollectionLogService: getRecentUniques()");
-        })
-      );
+  /**
+   * Gets all collection log categories. Error 500 possible.
+   */
+  getCategories(done, callback) {
+    this.http.get("/collection-log/categories").subscribe(categories => {
+      done(categories);
+    }, err => {
+      callback(err);
+    });
   }
 
 }

@@ -1,4 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
+import { take } from 'rxjs/operators';
+
+// services
+import { CollectionLogService } from "../services/collection-log.service";
+import { ProfileService } from "../services/profile.service";
+
+/**
+ * This file is responsible for getting the current user profile; and 
+ * displaying all collection log categories and selecting which category to render.
+ */
 
 @Component({
   selector: 'app-collection-log',
@@ -6,48 +16,43 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./collection-log.component.css']
 })
 export class CollectionLogComponent implements OnInit {
-  summaryCategory: boolean;
-  bossesCategory: boolean;
-  raidsCategory: boolean;
-  cluesCategory: boolean;
-  minigamesCategory: boolean;
-  otherCategory: boolean;
+  categories: string[] = [];
 
-  type: string;
+  category: string;
+  profileId: number;
 
-  constructor() { }
+  isLoading: boolean;
+
+  constructor(
+    private collectionLogService: CollectionLogService, 
+    private profileService: ProfileService) { }
 
   ngOnInit(): void {
-    // sets the default component view to summary
-    document.getElementById("summary-btn").classList.add("selected");
-  
-    this.summaryCategory = true;
-    this.bossesCategory = false;
-    this.raidsCategory = false;
-    this.cluesCategory = false;
-    this.minigamesCategory = false;
-    this.otherCategory = false;
+    console.time("Collection Log Init")
+    this.isLoading = true;
+    // gets the current user profile
+    this.profileService.currProfile.pipe(take(1)).subscribe(profile => {
+      this.profileId = profile.id;
 
-    this.type = "summary";
+      // gets all collection log categories
+      this.collectionLogService.getCategories((categories: { category: string }[]) => {
+        for(const category of categories) {
+          this.categories.push(category.category);
+        }
+        this.category = this.categories[0];
+
+        this.isLoading = false;
+        console.timeEnd("Collection Log Init")
+      }, (err) => {
+        console.log(err); // todo handle err
+      });
+    }, (err) => {
+      console.log(err); // todo handle err
+    });
   }
 
-  renderCategory(category): void {
-    // sets the specified category's button to selected
-    let elements = document.getElementsByClassName("selected");
-    for(let i = 0; i < elements.length; i++){
-      elements[i].classList.remove("selected");
-    }
-    document.getElementById(category+"-btn").classList.add("selected");
-
-    // triggers the specified category component type to render
-    category == "summary" ? this.summaryCategory = true : this.summaryCategory = false;
-    category == "bosses" ? this.bossesCategory = true : this.bossesCategory = false;
-    category == "raids" ? this.raidsCategory = true : this.raidsCategory = false;
-    category == "clues" ? this.cluesCategory = true : this.cluesCategory = false;
-    category == "minigames" ? this.minigamesCategory = true : this.minigamesCategory = false;
-    category == "other" ? this.otherCategory = true : this.otherCategory = false;
-
-    this.type = category;
+  selectCategory(category) {
+    this.category = category;
   }
 
 }

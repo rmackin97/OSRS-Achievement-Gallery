@@ -1,0 +1,53 @@
+<div *ngIf="!isLoading" class="content-container">
+
+    <!-- TODO register profile banner graphic -->
+    <div class="banner">
+       <h1 class="banner-text">Register Profile</h1>
+    </div>
+
+    <mat-card class="register-card">
+        <div class="card-text">
+            To register your profile simply provide your OSRS username and gamemode!
+        </div>
+        <form [formGroup]="registerProfileForm" 
+            (ngSubmit)="createProfile(registerProfileForm.value)">
+            <mat-form-field>
+                <input matInput placeholder="Username" formControlName="username" required>
+                <mat-error *ngIf="registerProfileForm.get('username').invalid">
+                    {{getErrorMessage(registerProfileForm.get('username'))}}
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Gamemode</mat-label>
+                <mat-select formControlName="gamemode" panelClass="dropdown"
+                    [disableRipple]="true" [disableOptionCentering]="true">
+                    <mat-option *ngFor="let gamemode of gamemodes" [value]="gamemode">{{gamemode}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="registerProfileForm.get('gamemode').invalid">
+                    {{getErrorMessage(registerProfileForm.get('gamemode'))}}
+                </mat-error>
+            </mat-form-field>
+        
+            <button *ngIf="!processing" mat-raised-button type="submit" [disabled]="!registerProfileForm.valid">
+                Add Profile
+            </button>
+            <mat-spinner *ngIf="processing" [diameter]="40"></mat-spinner>
+        </form>
+    </mat-card>
+
+    <mat-card>
+        <div class="card-text">
+            <h3>What is a Profile?</h3>
+            <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit reprehenderit possimus tempora porro consectetur distinctio tenetur nam officia voluptas error vitae quia architecto rerum, sit ut molestias quod illum. Voluptatibus!</span>
+        </div>
+        <div class="card-text">
+            <h3>How Does it Work?</h3>
+            <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit reprehenderit possimus tempora porro consectetur distinctio tenetur nam officia voluptas error vitae quia architecto rerum, sit ut molestias quod illum. Voluptatibus!</span>
+        </div>
+        <div class="card-text">
+            <h3>Philosophy with Profiles</h3>
+            <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit reprehenderit possimus tempora porro consectetur distinctio tenetur nam officia voluptas error vitae quia architecto rerum, sit ut molestias quod illum. Voluptatibus!</span>
+        </div>
+    </mat-card>
+</div>

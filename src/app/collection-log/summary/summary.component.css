@@ -13,8 +13,8 @@
     margin: 10px 10px;
     padding: 5px 10px;
 
-    background-color: rgb(50,52,59);
-    border: 1px solid rgba(100,100,100,0.3);
+    background-color: rgb(66,69,80);
+    border: 1px solid rgba(140,140,140,0.3);
 }
 
 .unique-item {
@@ -29,7 +29,7 @@ img {
 
 .unique-item .item-tooltip {
     visibility: hidden;
-    background-color: black;
+    background-color: rgb(20,23,26);
     text-align: center;
     padding: 5px;
 
@@ -47,47 +47,44 @@ img {
 }
 
 /* Cards */
-.cards-container {
+.progress-bar.container {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
 }
 
-.card-large {
-    min-width: 300px;
-    flex: 1 1 100%;
+.progress-bar.large {
+    /* min-width: 300px; */
+    max-width: calc(100% - 42px);
+    flex: 1 0 calc(100% - 42px);
 
     margin: 10px 10px;
     padding: 5px 10px;
 
-    background-color: rgb(50,52,59);
-    border: 1px solid rgba(100,100,100,0.3);
+    background-color: rgb(66,69,80);
+    border: 1px solid rgba(140,140,140,0.3);
 }
 
-.card-small {
-    min-width: 300px; /* TODO adjust later when ive decided elctron min/max width*/
-    /* need to make it so the theres never a time when only one card is per row  about 750px width*/
-    flex: 1 1 calc(50% - 42px);
-
-    margin: 10px 10px;
-    padding: 5px 10px;
-
-    background-color: rgb(50,52,59);
-    border: 1px solid rgba(100,100,100,0.3);
-}
-
-.card-small:nth-last-child(2) {
+.progress-bar.small {
     max-width: calc(50% - 42px);
+    flex: 1 0 calc(50% - 42px);
+
+    margin: 10px 10px;
+    padding: 5px 10px;
+
+    background-color: rgb(66,69,80);
+    border: 1px solid rgba(140,140,140,0.3);
 }
 
-.card-header {
+.progress-bar.header {
     display: flex;
     justify-content: space-between;
 
     padding-bottom: 5px;
 }
 
-#card-data span:first-child {
+/* todo here*/
+/* #card-data span:first-child {
     padding-right: 10px;
 }
 
@@ -100,23 +97,24 @@ img {
 
 #card-data span:last-child.complete {
     color: rgb(0, 255, 0);
-}
+} */
+/* todo to here */
 
-.card-body {
+.progress-bar.body {
     position: relative;
     height: 20px;
     width: 100%;
 
-    background-color: rgb(25,27,29);
-    border: 1px solid rgba(100,100,100,0.3);
+    background-color: rgb(30,33,36);
+    border: 1px solid rgba(140,140,140,0.3);
 }
 
-.progress-bar {
+.progress {
     background-color: rgba(0, 150, 0, 0.9);
     height: 20px;
 }
 
-.card-body .dividers {
+.progress-bar.body .dividers {
     display: flex;
 
     height: 100%;
@@ -128,7 +126,7 @@ img {
     left: 0px;
 }
 
-.card-body .divider {
+.progress-bar.body .divider {
     width: 25%;
     border-right: 1px solid black;
 }

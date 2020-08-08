@@ -2,44 +2,48 @@
     height: calc(100% - 56px);
     margin-top: 56px;
 
-    margin-left: 5%;
-    margin-right: 5%;
+    margin-left: 15%;
+    margin-right: 15%;
 
-    padding: 1%;
-    padding-top: 0;
-
-    background-color: rgb(25,27,29);
+    background-color: rgb(40,43,48);
+    border: 1px solid rgba(140,140,140,0.3);
 }
 
-.content-options {
-    padding-bottom: 10px;
+.content-container {
+    height: 100%;
 }
 
-.content-options ul {
+.content-wrapper {
+    margin: 0.5em;
+}
+
+/* Tab Bar */
+.tab-bar > .tabs {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
 
-    list-style-type: none;
-
-    border-bottom: 1px solid rgba(100,100,100,0.3);
+    border-bottom: 1px solid rgba(140,140,140,0.3);
 }
 
-/* Options button */
-.content-options a {
+/* Tab Styling */
+.tabs > a {
     flex: 1 1 auto;
     max-width: 180px;
 
     text-align: center;
+    font-size: 16px;
+    font-weight: 500;
 
     padding: 10px;
 }
 
-.content-options a:hover {
+.tabs > a:hover {
     cursor: pointer;
-    background-color: rgb(100,102,104);
+    background-color: rgb(146,149,160, 0.5);
 }
 
-.content-options a.selected {
-    border-bottom: 2px solid rgba(0, 255, 255, 0.9);
+.tabs > a.selected {
+    /* border-bottom: 2px solid rgba(0, 255, 255, 0.9); */
+    border-bottom: 2px solid yellow;
 }

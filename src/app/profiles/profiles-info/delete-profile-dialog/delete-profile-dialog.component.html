@@ -1,0 +1,15 @@
+<div class="content-container">
+    <h1 mat-dialog-title>Delete Profile?</h1>
+    <mat-dialog-content>
+        <div class="dialog-text">
+            Are you sure you want to permanently delete <strong>{{profile.username}}</strong>?
+        </div>
+        <div class="dialog-text">
+            This process cannot be reverted.
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-raised-button class="cancel" [mat-dialog-close]="false">Cancel</button>
+        <button mat-raised-button class="delete" [mat-dialog-close]="true">Delete</button>
+    </mat-dialog-actions>
+</div>

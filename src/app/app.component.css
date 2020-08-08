@@ -5,10 +5,32 @@
     display: flex;
     flex-direction: column;
 
-    background-color: rgb(15,17,19);
-}
+    background-color: rgb(66,69,80);
+    background-image: url("https://images.gamespress.com/Content/Artwork/NickNack/PremierPR/artwork/2017/09/25120912-510083b1-4a55-47dc-877e-9c32df529d8b/OSRS_Theatre-of-Blood-Final-Full.jpg?lightbox=y&ex=2020-09-09+03%3A00%3A00&sky=32d5296d0589fe42d6ec578f4ffda4b1d6226083c21b87d2b8ef34d5a28c8f75");
+    background-position: center; 
+    background-repeat: no-repeat;
+    background-size: cover; 
 
+    background-blend-mode: luminosity;
+}
 
 .content-wrapper {
     flex: 1 0 auto;
+}
+
+/* Snackbar */
+::ng-deep .error-snackbar {
+    background-color: rgb(220, 45, 45);
+}
+
+::ng-deep .error-snackbar button:hover {
+    background-color: rgb(255, 80, 80, 0.9);
+}
+
+::ng-deep .success-snackbar {
+    background-color: rgb(66,69,80);
+}
+
+::ng-deep .success-snackbar button:hover {
+    background-color: rgb(146,149,160, 0.5);
 }

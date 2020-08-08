@@ -1,0 +1,27 @@
+::ng-deep .delete-dialog .mat-dialog-container {
+    background-color: rgb(54,57,62);
+}
+
+h1 {
+    color: yellow
+}
+
+mat-dialog-content > *:not(:last-child) {
+    margin-bottom: 1em;
+}
+
+button.delete {
+    background-color: rgb(220, 45, 45);
+}
+
+button.delete:hover {
+    background-color: rgb(255, 80, 80, 0.9);
+}
+
+button.cancel {
+    background-color: rgb(66,69,80);
+}
+
+button.cancel:hover {
+    background-color: rgb(146,149,160, 0.5);
+}

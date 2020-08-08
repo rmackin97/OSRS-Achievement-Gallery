@@ -1,0 +1,30 @@
+<div id="sidebar" [ngClass]="{'active': toggle, 'inactive': !toggle}">
+    <ul>
+        <a routerLink="/home" (click)="closeSidebar()">
+            <li>
+                <div class="sidebar-text">Home</div>
+                <!-- https://oldschool.runescape.wiki/images/b/bd/Stats_icon.png?1b467 -->
+                <img src="" alt=".">
+            </li>
+        </a>
+        <a routerLink="/overview" (click)="closeSidebar()">
+            <li>
+                <div class="sidebar-text">Overview</div>
+                <img src="" alt=".">
+            </li>
+        </a>
+        <a routerLink="/collection-log" (click)="closeSidebar()">
+            <li>
+                <div class="sidebar-text">Collection Log</div>
+                <!-- https://oldschool.runescape.wiki/images/e/ec/Collection_log.png?7e504 -->
+                <img src="" alt=".">
+            </li>
+        </a>
+        <a routerLink="/generate-task" (click)="closeSidebar()">
+            <li>
+                <div class="sidebar-text">Generate Task</div>
+                <img src="" alt=".">
+            </li>
+        </a>
+    </ul>
+</div>

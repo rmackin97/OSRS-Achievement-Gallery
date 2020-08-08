@@ -1,34 +1,37 @@
-.cards-container {
+mat-spinner {
+    position: absolute; 
+    top: 0;
+    bottom: 0;
+    left: 0; 
+    right: 0; 
+    margin: auto;
+}
+
+.card-container {
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
 }
 
-/* Cards displayed full length (clue category only) */
-.card-large {
-    min-width: 300px;
-    flex: 1 1 100%;
+mat-card.card.large {
+    max-width: calc(100% - 1em);
+    flex: 1 0 calc(100% - 1em);
 
-    margin: 10px 10px;
+    padding: 0;
+    margin: 0.5em 0.5em;
 
-    background-color: rgb(50,52,59);
-    border: 1px solid rgba(100,100,100,0.3);
+    background-color: rgb(66,69,80);
+    border: 1px solid rgba(140,140,140,0.3);
 }
 
-/* Cards displayed side by side */
-.card-small {
-    min-width: 300px; /* TODO adjust later when ive decided elctron min/max width*/
-    /* need to make it so the theres never a time when only one card is per row  about 750px width*/
-    flex: 1 1 calc(50% - 22px);
+mat-card.card.small {
+    max-width: calc(50% - 1em - 2px);
+    flex: 1 0 calc(50% - 1em - 2px);
 
-    margin: 10px 10px;
+    padding: 0;
+    margin: 0.5em 0.5em;
 
-    background-color: rgb(50,52,59);
-    border: 1px solid rgba(100,100,100,0.3);
-}
-
-.card-small:last-child {
-    max-width: calc(50% - 20px);
+    background-color: rgb(66,69,80);
+    border: 1px solid rgba(140,140,140,0.3);
 }
 
 /* ----- Card Header ----- */
@@ -38,46 +41,45 @@
 
     padding: 10px 10px;
 
-    background-color: rgb(15,17,19);
-    border-bottom: 1px solid rgba(100,100,100,0.3);
+    background-color: rgb(30,33,36);
+    border-bottom: 1px solid rgba(140,140,140,0.3);
+
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
 }
 
-#card-data span:first-child {
+.card-data span.score {
     padding-right: 10px;
+    border-right: 1px solid rgba(140,140,140,0.3);
 }
 
-#card-data span:last-child {
+.card-data span.incomplete {
     padding-left: 10px;
-    border-left: 1px solid rgba(100,100,100,0.3);
-
-    color: rgb(255, 255, 0);
+    color: rgb(255,255,0);
 }
 
-#card-data span:last-child.complete {
+.card-data span.complete {
+    padding-left: 10px;
     color: rgb(0, 255, 0);
 }
 
 /* ----- Card Body ----- */
 .card-body ul {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
+    display: grid;
+
+    grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+    grid-auto-rows: minmax(50px, auto);
+
+    justify-items: center;
     align-items: center;
-
-    text-align: center;
-
-    padding: 20px 10px;
+    
+    padding: 10px 10px;
     list-style-type: none;
 }
 
 .card-body li {
-    flex: 0 1 50px;
     position: relative;
-}
-
-img {
-    padding: 5px 10px;
-    object-fit: scale-down;
+    user-select: none;
 }
 
 img.unobtained {
@@ -94,10 +96,11 @@ img:hover {
 
 li .item-tooltip {
     visibility: hidden;
-    background-color: black;
+    background-color: rgb(20,23,26);
     text-align: center;
     padding: 5px;
     
+    font-size: small;
     white-space: nowrap; /* TODO cuts content when hanging off screen */
 
     /* Position the tooltip text */
@@ -109,4 +112,18 @@ li .item-tooltip {
 
 li:hover .item-tooltip {
     visibility: visible;
+}
+
+/* For screens smaller than 992px */
+@media only screen and (max-width: 992px) {
+    mat-card.card.small {
+        max-width: calc(100% - 1em);
+        flex: 1 0 calc(100% - 1em);
+
+        padding: 0;
+        margin: 0.5em 0.5em;
+
+        background-color: rgb(66,69,80);
+        border: 1px solid rgba(140,140,140,0.3);
+    }
 }

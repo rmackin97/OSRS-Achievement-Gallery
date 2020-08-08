@@ -1,0 +1,138 @@
+.content-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.content-container > * {
+    margin-bottom: 1em;
+}
+
+.header h1 { color: rgb(255,255,0); }
+.header div { font-weight: 500; }
+
+
+/* Profile Options Grid Style */
+/* Screens smaller than 991px */
+@media only screen and (max-width: 991px) {
+    .grid-container.profile-options {
+        display: grid;
+        grid-template-columns: minmax(200px, 2fr);
+        gap: 1em 1em;
+    }
+
+    .grid-item.delete {
+        order: 999;
+    }
+}
+
+/* Screens larger than 992px */
+@media only screen and (min-width: 992px) {
+    .grid-container.profile-options {
+        display: grid;
+        grid-template-columns: minmax(200px, 2fr) minmax(200px, 1fr);
+        gap: 1em 1em;
+    }
+
+    .grid-item.filters {
+        grid-column: 1 / span 2;
+    }
+}
+
+.grid-item.edit {
+    grid-row: 1 / span 2;
+}
+
+/* Form Style */
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 220px;
+}
+
+form > button {
+    margin-top: 5px;
+}
+
+form > button:enabled {
+    background-color: rgb(66,69,80);
+}
+
+form > button:enabled:hover {
+    background-color: rgb(146,149,160, 0.5);
+}
+
+form > button:disabled {
+    background-color: rgba(166,166,166,0.3);
+}
+
+::ng-deep .dropdown {
+    background-color: rgb(66,69,80);;   
+}
+
+::ng-deep .dropdown > .mat-option:hover {
+    background-color: rgb(146,149,160, 0.5);
+}
+
+::ng-deep .dropdown > .mat-option.mat-selected:not(.mat-option-disabled) {
+    background-color: rgb(146,149,160, 0.5);
+}
+
+/* Filters */
+.filters {
+    display: flex;
+    flex-direction: column;
+}
+
+::ng-deep .mat-checkbox-layout { 
+    white-space: normal !important; 
+}
+
+/* Cards */
+mat-card {
+    background-color: rgb(54,57,62);
+}
+
+.card-text {
+    margin-bottom: 1em;
+}
+
+.edit-card {
+    height: calc(100% - 2em);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.update-card, .delete-card {
+    height: calc(100% - 2em);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.update-card > .actions, .delete-card > .actions {
+    display: flex;
+    flex-direction: column;
+    max-width: 125px;
+}
+
+.update-card > .actions > button, .delete-card > .actions > button {
+    background-color: rgb(66,69,80);
+}
+
+.update-card > .actions > button:hover {
+    background-color: rgb(146,149,160, 0.5);
+}
+
+.delete-card > .actions > button:hover {
+    background-color: rgb(220, 45, 45);
+}
+
+.warning-message {
+    color: rgb(255,255,0);
+    font-weight: bold;
+}
+
+mat-spinner {
+    align-self: center;
+}
